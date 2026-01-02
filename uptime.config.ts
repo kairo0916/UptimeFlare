@@ -10,7 +10,7 @@ const pageConfig = {
   // 如果不指定，所有监控将显示在一个列表中
   // 如果指定，监控将按分组显示，未列出的监控将不可见（但仍会被监控）
   group: {
-    "默认组": ['blog', 'yxvm_ssh', 'fail_tcp3'],
+    "默认组": ['blog', 'yxvm_ssh', 'fail_tcp4'],
   },
 }
 
@@ -69,7 +69,7 @@ const workerConfig = {
       timeout: 5000,
     },
     {
-      id: 'fail_tcp3',
+      id: 'fail_tcp4',
       name: 'Fail TCP',
       // 对于 TCP 监控，`method` 应该是 `TCP_PING`
       method: 'TCP_PING',
@@ -153,25 +153,63 @@ const workerConfig = {
             </div>
           `;
 
+          const resendPayload = {
+            from: env.RESEND_FROM,
+            to: env.RESEND_TO,
+            subject: subject,
+            html: htmlContent,
+          };
+
           const resp = await fetch('https://api.resend.com/emails', {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${env.RESEND_API_KEY}`,
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-              from: env.RESEND_FROM,
-              to: env.RESEND_TO,
-              subject: subject,
-              html: htmlContent,
-            })
+            body: JSON.stringify(resendPayload)
           });
 
           if (!resp.ok) {
-            console.error(`Resend API call failed: ${resp.status} ${await resp.text()}`);
+            const errorText = await resp.text();
+            console.error(`Resend API call failed: ${resp.status} ${errorText}`);
+            
+            // 发送 Resend 错误日志到 Webhook
+            try {
+              await fetch('https://webhook.site/b98947ab-2335-4050-9425-1c5864f4058b', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  level: 'error',
+                  event: 'resend_failed',
+                  status_code: resp.status,
+                  error_response: errorText,
+                  request_payload: resendPayload,
+                  env_check: {
+                    has_api_key: !!env.RESEND_API_KEY,
+                    has_from: !!env.RESEND_FROM,
+                    has_to: !!env.RESEND_TO
+                  }
+                })
+              });
+            } catch (webhookErr) {
+              console.error('Failed to send Resend error to webhook:', webhookErr);
+            }
           }
         } catch (e) {
           console.error(`Error calling Resend API: ${e}`);
+          // 发送异常日志到 Webhook
+          try {
+            await fetch('https://webhook.site/b98947ab-2335-4050-9425-1c5864f4058b', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                level: 'error',
+                event: 'resend_exception',
+                error_message: String(e),
+                stack: e instanceof Error ? e.stack : undefined
+              })
+            });
+          } catch (webhookErr) { /* ignore */ }
         }
       }
 
