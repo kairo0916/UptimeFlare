@@ -49,7 +49,7 @@ export default function Home({
     <>
       <Head>
         <title>{pageConfig.title}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0" />
       </Head>
 
       <main className={inter.className}>

@@ -10,7 +10,7 @@ const pageConfig = {
   // 如果不指定，所有监控将显示在一个列表中
   // 如果指定，监控将按分组显示，未列出的监控将不可见（但仍会被监控）
   group: {
-    "默认组": ['blog', 'yxvm_ssh', 'fail_tcp7'],
+    "默认组": ['blog', 'yxvm_ssh'],
   },
 }
 
@@ -22,63 +22,207 @@ const workerConfig = {
   // 在这里定义所有的监控
   monitors: [
     // HTTP 监控示例
+    // {
+    //   // `id` 应该是唯一的，如果 `id` 保持不变，历史记录将被保留
+    //   id: 'blog',
+    //   // `name` 用于状态页面和回调消息
+    //   name: '博客',
+    //   // `method` 应该是有效的 HTTP 方法
+    //   method: 'HEAD',
+    //   // `target` 是一个有效的 URL
+    //   target: 'https://blog.acofork.com/',
+    //   // [可选] `tooltip` 仅用于在状态页面显示提示信息
+    //   //tooltip: '这是此监控的提示信息',
+    //   // [可选] `statusPageLink` 仅用于状态页面的可点击链接
+    //   statusPageLink: 'https://blog.acofork.com/',
+    //   // [可选] `hideLatencyChart` 如果设置为 true，将隐藏状态页面的延迟图表
+    //   hideLatencyChart: false,
+    //   // [可选] `expectedCodes` 是可接受的 HTTP 响应代码数组，如果不指定，默认为 2xx
+    //   expectedCodes: [200],
+    //   // [可选] `timeout` 以毫秒为单位，如果不指定，默认为 10000
+    //   timeout: 10000,
+    //   // [可选] 要发送的头部信息
+    //   //headers: {
+    //   //  'User-Agent': 'Uptimeflare',
+    //   //  Authorization: 'Bearer YOUR_TOKEN_HERE',
+    //   //},
+    //   // [可选] 要发送的正文
+    //   //body: 'Hello, world!',
+    //   // [可选] 如果指定，响应必须包含关键字才被视为正常
+    //   //responseKeyword: 'success',
+    //   // [可选] 如果指定，响应必须不包含关键字才被视为正常
+    //   //responseForbiddenKeyword: 'bad gateway',
+    //   // [可选] 如果指定，检查将在您指定的区域运行，
+    //   // 设置此值之前请参考文档 https://github.com/lyc8503/UptimeFlare/wiki/Geo-specific-checks-setup
+    //   //checkLocationWorkerRoute: 'https://xxx.example.com',
+    // },
     {
-      // `id` 应该是唯一的，如果 `id` 保持不变，历史记录将被保留
       id: 'blog',
-      // `name` 用于状态页面和回调消息
-      name: '博客',
-      // `method` 应该是有效的 HTTP 方法
+      name: '博客总入口（自动分流）',
       method: 'HEAD',
-      // `target` 是一个有效的 URL
       target: 'https://blog.acofork.com/',
-      // [可选] `tooltip` 仅用于在状态页面显示提示信息
-      //tooltip: '这是此监控的提示信息',
-      // [可选] `statusPageLink` 仅用于状态页面的可点击链接
-      //statusPageLink: 'https://example.com',
-      // [可选] `hideLatencyChart` 如果设置为 true，将隐藏状态页面的延迟图表
+      statusPageLink: 'https://blog.acofork.com/',
       hideLatencyChart: false,
-      // [可选] `expectedCodes` 是可接受的 HTTP 响应代码数组，如果不指定，默认为 2xx
       expectedCodes: [200],
-      // [可选] `timeout` 以毫秒为单位，如果不指定，默认为 10000
       timeout: 10000,
-      // [可选] 要发送的头部信息
-      //headers: {
-      //  'User-Agent': 'Uptimeflare',
-      //  Authorization: 'Bearer YOUR_TOKEN_HERE',
-      //},
-      // [可选] 要发送的正文
-      //body: 'Hello, world!',
-      // [可选] 如果指定，响应必须包含关键字才被视为正常
-      //responseKeyword: 'success',
-      // [可选] 如果指定，响应必须不包含关键字才被视为正常
-      //responseForbiddenKeyword: 'bad gateway',
-      // [可选] 如果指定，检查将在您指定的区域运行，
-      // 设置此值之前请参考文档 https://github.com/lyc8503/UptimeFlare/wiki/Geo-specific-checks-setup
-      //checkLocationWorkerRoute: 'https://xxx.example.com',
     },
-    // TCP 监控示例
+    {
+      id: 'blog_eo',
+      name: '博客（EdgeOne Pages国内节点）',
+      method: 'HEAD',
+      target: 'https://eo-blog.acofork.com/',
+      statusPageLink: 'https://eo-blog.acofork.com/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'blog_esa',
+      name: '博客（ESA国内节点）',
+      method: 'HEAD',
+      target: 'https://esa-blog.acofork.com/',
+      statusPageLink: 'https://esa-blog.acofork.com/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'blog_cf',
+      name: '博客（Cloudflare Pages海外节点）',
+      method: 'HEAD',
+      target: 'https://cf-blog.acofork.com/',
+      statusPageLink: 'https://cf-blog.acofork.com/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'umami_nas',
+      name: 'Umami（NAS）',
+      method: 'HEAD',
+      target: 'https://umami.acofork.com/',
+      statusPageLink: 'https://umami.acofork.com/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'vw_nas',
+      name: 'VaultWarden（NAS）',
+      method: 'HEAD',
+      target: 'https://vw.acofork.com/',
+      statusPageLink: 'https://vw.acofork.com/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'pan_nas',
+      name: 'OpenList（NAS）',
+      method: 'HEAD',
+      target: 'https://pan.acofork.com/',
+      statusPageLink: 'https://pan.acofork.com/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'fnos_nas',
+      name: '飞牛（NAS）',
+      method: 'HEAD',
+      target: 'https://nas.acofork.com/',
+      statusPageLink: 'https://nas.acofork.com/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'gh_proxy_eo',
+      name: 'Github 代理（EdgeOne）',
+      method: 'HEAD',
+      target: 'https://gh.072103.xyz/',
+      statusPageLink: 'https://gh.072103.xyz/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'gh_proxy_cf',
+      name: 'Github 代理（Cloudflare）',
+      method: 'HEAD',
+      target: 'https://cf-gh.072103.xyz/',
+      statusPageLink: 'https://cf-gh.072103.xyz/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'gh_proxy_nf',
+      name: 'Github 代理（Netlify）',
+      method: 'HEAD',
+      target: 'https://nf-gh.072103.xyz/',
+      statusPageLink: 'https://nf-gh.072103.xyz/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'eopfapi',
+      name: '随机图API（EdgeOne）',
+      method: 'HEAD',
+      target: 'https://eopfapi.acofork.com/pic/',
+      statusPageLink: 'https://eopfapi.acofork.com/pic/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'eo_umami',
+      name: 'Umami（EdgeOne Pages）',
+      method: 'HEAD',
+      target: 'https://eo-umami.acofork.com/',
+      statusPageLink: 'https://eo-umami.acofork.com/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'upload_to_s3',
+      name: '简单上传文件到S3（EdgeOne Pages）',
+      method: 'HEAD',
+      target: 'https://u.2x.nz/',
+      statusPageLink: 'https://u.2x.nz/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'onedrive_index',
+      name: 'OneDrive 公开只读（Vercel）',
+      method: 'HEAD',
+      target: 'https://e3.2x.nz/',
+      statusPageLink: 'https://e3.2x.nz/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
+    {
+      id: 'eo_http',
+      name: '网站安全测试（EdgeOne Pages）',
+      method: 'HEAD',
+      target: 'https://http.acofork.com/',
+      statusPageLink: 'https://http.acofork.com/',
+      hideLatencyChart: false,
+      expectedCodes: [200],
+      timeout: 10000,
+    },
     {
       id: 'yxvm_ssh',
       name: 'YxVM SSH',
-      // 对于 TCP 监控，`method` 应该是 `TCP_PING`
       method: 'TCP_PING',
-      // 对于 TCP 监控，`target` 应该是 `host:port`
       target: '46.232.60.28:22',
-      //tooltip: '我的生产服务器 SSH',
-      //statusPageLink: 'https://example.com',
       timeout: 5000,
-    },
-    {
-      id: 'fail_tcp7',
-      name: 'Fail TCP',
-      // 对于 TCP 监控，`method` 应该是 `TCP_PING`
-      method: 'TCP_PING',
-      // 对于 TCP 监控，`target` 应该是 `host:port`
-      target: '192.168.124.14:22',
-      //tooltip: '我的生产服务器 SSH',
-      //statusPageLink: 'https://example.com',
-      timeout: 5000,
-    },
+    }
   ],
   notification: {
     // [可选] apprise API 服务器 URL
@@ -106,116 +250,52 @@ const workerConfig = {
       // 当任何监控的状态发生变化时，将调用此回调
       // 在这里编写任何 Typescript 代码
 
-      // 发送状态变更日志到 Webhook
-      try {
-        await fetch('https://webhook.site/b98947ab-2335-4050-9425-1c5864f4058b', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            level: 'info',
-            event: 'status_change',
-            monitor: {
-              id: monitor.id,
-              name: monitor.name
-            },
-            status: isUp ? 'UP' : 'DOWN',
-            timestamp: timeNow,
-            reason: reason,
-            downtime_duration: isUp ? (timeNow - timeIncidentStart) : 0
-          })
-        });
-      } catch (e) {
-        console.error('Error sending webhook log:', e);
-      }
-
       // 调用 Resend API 发送邮件通知
-      // 不检查环境变量，强制执行并记录详细日志
-      const debugLog: any = {
-        level: 'debug',
-        event: 'email_attempt_start',
-        timestamp: Date.now(),
-        env_vars: {
-          RESEND_API_KEY_EXISTS: !!env.RESEND_API_KEY,
-          // 为了安全，不记录 key 的具体值，只记录长度
-          RESEND_API_KEY_LENGTH: env.RESEND_API_KEY ? env.RESEND_API_KEY.length : 0,
-        },
-        monitor_info: {
-          id: monitor.id,
-          name: monitor.name,
-          isUp: isUp
-        }
-      };
-
-      try {
-        const statusText = isUp ? '恢复正常 (UP)' : '服务中断 (DOWN)';
-        const color = isUp ? '#4ade80' : '#ef4444'; // green-400 : red-500
-        const subject = `[${statusText}] ${monitor.name} 状态变更通知`;
-        
-        // 尝试格式化时间
-        let timeString = new Date(timeNow * 1000).toISOString();
+      // 务必在 Cloudflare Worker 的设置 -> 变量中配置: RESEND_API_KEY
+      if (env.RESEND_API_KEY) {
         try {
-          timeString = new Date(timeNow * 1000).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
-        } catch (e) { /* ignore */ }
+          const statusText = isUp ? '恢复正常 (UP)' : '服务中断 (DOWN)';
+          const color = isUp ? '#4ade80' : '#ef4444'; // green-400 : red-500
+          const subject = `[${statusText}] ${monitor.name} 状态变更通知`;
+          
+          // 尝试格式化时间
+          let timeString = new Date(timeNow * 1000).toISOString();
+          try {
+            timeString = new Date(timeNow * 1000).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
+          } catch (e) { /* ignore */ }
 
-        const htmlContent = `
-          <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 5px;">
-            <h2 style="color: ${color};">${statusText}</h2>
-            <p><strong>监控名称:</strong> ${monitor.name}</p>
-            <p><strong>时间:</strong> ${timeString}</p>
-            <p><strong>原因:</strong> ${reason}</p>
-            <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
-            <p style="font-size: 12px; color: #888;">来自 UptimeFlare 监控报警</p>
-          </div>
-        `;
+          const htmlContent = `
+            <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 5px;">
+              <h2 style="color: ${color};">${statusText}</h2>
+              <p><strong>监控名称:</strong> ${monitor.name}</p>
+              <p><strong>时间:</strong> ${timeString}</p>
+              <p><strong>原因:</strong> ${reason}</p>
+              <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+              <p style="font-size: 12px; color: #888;">来自 UptimeFlare 监控报警</p>
+            </div>
+          `;
 
-        const resendPayload = {
-          from: "Acme <uptimeflare@update.2x.nz>",
-          to: ["acofork@foxmail.com"],
-          subject: subject,
-          html: htmlContent,
-        };
+          const resendPayload = {
+            from: "系统状态更新 <uptimeflare@update.2x.nz>",
+            to: ["acofork@foxmail.com"],
+            subject: subject,
+            html: htmlContent,
+          };
 
-        debugLog.request_payload = resendPayload;
-
-        const resp = await fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${env.RESEND_API_KEY}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(resendPayload)
-        });
-
-        debugLog.response_status = resp.status;
-        debugLog.response_status_text = resp.statusText;
-        
-        const responseText = await resp.text();
-        debugLog.response_body = responseText;
-
-        if (!resp.ok) {
-          console.error(`Resend API call failed: ${resp.status} ${responseText}`);
-          debugLog.level = 'error';
-          debugLog.event = 'email_send_failed';
-        } else {
-          debugLog.level = 'info';
-          debugLog.event = 'email_send_success';
-        }
-      } catch (e) {
-        console.error(`Error calling Resend API: ${e}`);
-        debugLog.level = 'error';
-        debugLog.event = 'email_exception';
-        debugLog.error_message = String(e);
-        debugLog.stack = e instanceof Error ? e.stack : undefined;
-      } finally {
-        // 无论成功失败，都将收集到的所有日志发送到 Webhook
-        try {
-          await fetch('https://webhook.site/b98947ab-2335-4050-9425-1c5864f4058b', {
+          const resp = await fetch('https://api.resend.com/emails', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(debugLog)
+            headers: {
+              'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(resendPayload)
           });
-        } catch (webhookErr) {
-          console.error('Failed to send debug log to webhook:', webhookErr);
+
+          if (!resp.ok) {
+            console.error(`Resend API call failed: ${resp.status} ${await resp.text()}`);
+          }
+        } catch (e) {
+          console.error(`Error calling Resend API: ${e}`);
         }
       }
 
@@ -231,6 +311,8 @@ const workerConfig = {
     ) => {
       // 如果任何监控有正在进行的事件，此回调将每分钟调用一次
       // 在这里编写任何 Typescript 代码
+
+
     },
   },
 }
