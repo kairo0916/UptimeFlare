@@ -39,10 +39,29 @@ export default function Header() {
 
         <Group gap={5} visibleFrom="sm">
           {pageConfig.links.map(linkToElement)}
+          <Button 
+            size="xs" 
+            variant="light" 
+            color="gray" 
+            loading={loading} 
+            onClick={triggerNotification}
+            leftSection={<IconBellRinging size={14} />}
+          >
+            测试通知
+          </Button>
         </Group>
 
         <Group gap={5} hiddenFrom="sm">
           {pageConfig.links.filter((link) => (link as any).highlight).map(linkToElement)}
+          <Button 
+            size="xs" 
+            variant="light" 
+            color="gray" 
+            loading={loading} 
+            onClick={triggerNotification}
+          >
+            测试
+          </Button>
         </Group>
       </Container>
     </header>
