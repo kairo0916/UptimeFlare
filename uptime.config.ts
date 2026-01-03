@@ -1,10 +1,10 @@
 const pageConfig = {
   // 状态页面的标题
-  title: "AcoFork 的状态页",
+  title: "Kairo 的狀態頁",
   // 在状态页面头部显示的链接，可以设置 `highlight` 为 `true`
   links: [
-    { link: 'https://github.com/afoim', label: 'GitHub' },
-    { link: 'https://blog.acofork.com/', label: '博客' },
+    { link: 'https://github.com/Kairo0916', label: 'GitHub' },
+    { link: 'https://kairo.qzz.io/', label: '博客' },
   ],
   // [可选] 对监控进行分组
   // 如果不指定，所有监控将显示在一个列表中
@@ -60,8 +60,8 @@ const workerConfig = {
       id: 'blog',
       name: '博客总入口（自动分流）',
       method: 'HEAD',
-      target: 'https://blog.acofork.com/',
-      statusPageLink: 'https://blog.acofork.com/',
+      target: 'https://kairo.qzz.io/',
+      statusPageLink: 'https://kairo.qzz.io//',
       hideLatencyChart: false,
       expectedCodes: [200],
       timeout: 10000,
@@ -70,8 +70,8 @@ const workerConfig = {
       id: 'blog_eo',
       name: '博客（EdgeOne Pages国内节点）',
       method: 'HEAD',
-      target: 'https://eo-blog.acofork.com/',
-      statusPageLink: 'https://eo-blog.acofork.com/',
+      target: 'https://edge.kairo.qzz.io/',
+      statusPageLink: 'https://edge.kairo.qzz.io/',
       hideLatencyChart: false,
       expectedCodes: [200],
       timeout: 10000,
@@ -80,128 +80,31 @@ const workerConfig = {
       id: 'blog_cf',
       name: '博客（Cloudflare Pages海外节点）',
       method: 'HEAD',
-      target: 'https://cf-blog.acofork.com/',
-      statusPageLink: 'https://cf-blog.acofork.com/',
+      target: 'https://cf.kairo.qzz.io/',
+      statusPageLink: 'https://cf.kairo.qzz.io/',
       hideLatencyChart: false,
       expectedCodes: [200],
       timeout: 10000,
     },
     {
-      id: 'umami_nas',
-      name: 'Umami（NAS）',
+      id: 'umami_web',
+      name: 'Umami',
       method: 'HEAD',
-      target: 'https://umami.acofork.com/',
-      statusPageLink: 'https://umami.acofork.com/',
+      target: 'https://umami.kairo.qzz.io/',
+      statusPageLink: 'https://umami.kairo.qzz.io/',
       hideLatencyChart: false,
       expectedCodes: [200],
       timeout: 10000,
     },
     {
-      id: 'vw_nas',
-      name: 'VaultWarden（NAS）',
+      id: 'edge_web',
+      name: 'EdgeOne 監控大屏',
       method: 'HEAD',
-      target: 'https://vw.acofork.com/',
-      statusPageLink: 'https://vw.acofork.com/',
+      target: 'https://eo.kairo.qzz.io/',
+      statusPageLink: 'https://eo.kairo.qzz.io/',
       hideLatencyChart: false,
       expectedCodes: [200],
       timeout: 10000,
-    },
-    {
-      id: 'pan_nas',
-      name: 'OpenList（NAS）',
-      method: 'GET',
-      target: 'https://pan.acofork.com/',
-      statusPageLink: 'https://pan.acofork.com/',
-      hideLatencyChart: false,
-      expectedCodes: [200],
-      timeout: 10000,
-    },
-    {
-      id: 'fnos_nas',
-      name: '飞牛（NAS）',
-      method: 'HEAD',
-      target: 'https://nas.acofork.com/',
-      statusPageLink: 'https://nas.acofork.com/',
-      hideLatencyChart: false,
-      expectedCodes: [200],
-      timeout: 10000,
-    },
-    {
-      id: 'gh_proxy_eo',
-      name: 'Github 代理（EdgeOne）',
-      method: 'HEAD',
-      target: 'https://gh.072103.xyz/',
-      statusPageLink: 'https://gh.072103.xyz/',
-      hideLatencyChart: false,
-      expectedCodes: [200],
-      timeout: 10000,
-    },
-    {
-      id: 'gh_proxy_cf',
-      name: 'Github 代理（Cloudflare）',
-      method: 'HEAD',
-      target: 'https://cf-gh.072103.xyz/',
-      statusPageLink: 'https://cf-gh.072103.xyz/',
-      hideLatencyChart: false,
-      expectedCodes: [200],
-      timeout: 10000,
-    },
-    {
-      id: 'eopfapi',
-      name: '随机图API（EdgeOne）',
-      method: 'HEAD',
-      target: 'https://eopfapi.acofork.com/pic/',
-      statusPageLink: 'https://eopfapi.acofork.com/pic/',
-      hideLatencyChart: false,
-      expectedCodes: [200],
-      timeout: 10000,
-    },
-    {
-      id: 'eo_umami',
-      name: 'Umami（EdgeOne Pages）',
-      method: 'HEAD',
-      target: 'https://eo-umami.acofork.com/',
-      statusPageLink: 'https://eo-umami.acofork.com/',
-      hideLatencyChart: false,
-      expectedCodes: [200],
-      timeout: 10000,
-    },
-    {
-      id: 'upload_to_s3',
-      name: '简单上传文件到S3（EdgeOne Pages）',
-      method: 'GET',
-      target: 'https://u.2x.nz/',
-      statusPageLink: 'https://u.2x.nz/',
-      hideLatencyChart: false,
-      expectedCodes: [200],
-      timeout: 10000,
-    },
-    {
-      id: 'onedrive_index',
-      name: 'OneDrive 公开只读（Vercel）',
-      method: 'HEAD',
-      target: 'https://e3.2x.nz/',
-      statusPageLink: 'https://e3.2x.nz/',
-      hideLatencyChart: false,
-      expectedCodes: [200],
-      timeout: 10000,
-    },
-    {
-      id: 'eo_http',
-      name: '网站安全测试（EdgeOne Pages）',
-      method: 'HEAD',
-      target: 'https://http.acofork.com/',
-      statusPageLink: 'https://http.acofork.com/',
-      hideLatencyChart: false,
-      expectedCodes: [200],
-      timeout: 10000,
-    },
-    {
-      id: 'yxvm_ssh',
-      name: 'YxVM SSH',
-      method: 'TCP_PING',
-      target: '46.232.60.28:22',
-      timeout: 5000,
     }
   ],
   notification: {
@@ -212,7 +115,7 @@ const workerConfig = {
     // 如果不指定，将不会发送通知
     //recipientUrl: "tgram://bottoken/ChatID",
     // [可选] 通知消息中使用的时区，默认为 "Etc/GMT"
-    timeZone: "Asia/Shanghai",
+    timeZone: "Asia/Taipei",
     // [可选] 发送通知前的宽限期（分钟）
     // 只有在初始失败后连续 N 次检查都失败时才会发送通知
     // 如果不指定，将立即发送通知
@@ -234,24 +137,24 @@ const workerConfig = {
       // 务必在 Cloudflare Worker 的设置 -> 变量中配置: RESEND_API_KEY
       if (env.RESEND_API_KEY) {
         try {
-          const statusText = isUp ? '恢复正常 (UP)' : '服务中断 (DOWN)';
+          const statusText = isUp ? '恢復正常 (UP)' : '服務中斷 (DOWN)';
           const color = isUp ? '#4ade80' : '#ef4444'; // green-400 : red-500
-          const subject = `[${statusText}] ${monitor.name} 状态变更通知`;
+          const subject = `[${statusText}] ${monitor.name} 狀態變更通知`;
           
           // 尝试格式化时间
           let timeString = new Date(timeNow * 1000).toISOString();
           try {
-            timeString = new Date(timeNow * 1000).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
+            timeString = new Date(timeNow * 1000).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
           } catch (e) { /* ignore */ }
 
           const htmlContent = `
             <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 5px;">
               <h2 style="color: ${color};">${statusText}</h2>
-              <p><strong>监控名称:</strong> ${monitor.name}</p>
-              <p><strong>时间:</strong> ${timeString}</p>
+              <p><strong>監控名稱:</strong> ${monitor.name}</p>
+              <p><strong>時間:</strong> ${timeString}</p>
               <p><strong>原因:</strong> ${reason}</p>
               <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
-              <p style="font-size: 12px; color: #888;">来自 UptimeFlare 监控报警</p>
+              <p style="font-size: 12px; color: #888;">來自 UptimeFlare 監控報警</p>
             </div>
           `;
 
