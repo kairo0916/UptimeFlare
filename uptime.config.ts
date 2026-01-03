@@ -39,8 +39,8 @@ const workerConfig = {
     //   hideLatencyChart: false,
     //   // [可选] `expectedCodes` 是可接受的 HTTP 响应代码数组，如果不指定，默认为 2xx
     //   expectedCodes: [200],
-    //   // [可选] `timeout` 以毫秒为单位，如果不指定，默认为 10000
-    //   timeout: 10000,
+    //   // [可选] `timeout` 以毫秒为单位，如果不指定，默认为 25000
+    //   timeout: 25000,
     //   // [可选] 要发送的头部信息
     //   //headers: {
     //   //  'User-Agent': 'Uptimeflare',
@@ -64,7 +64,7 @@ const workerConfig = {
       statusPageLink: 'https://blog.acofork.com/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'blog_eo',
@@ -74,7 +74,7 @@ const workerConfig = {
       statusPageLink: 'https://eo-blog.acofork.com/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'blog_cf',
@@ -84,7 +84,7 @@ const workerConfig = {
       statusPageLink: 'https://cf-blog.acofork.com/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'umami_nas',
@@ -94,7 +94,7 @@ const workerConfig = {
       statusPageLink: 'https://umami.acofork.com/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'vw_nas',
@@ -104,7 +104,7 @@ const workerConfig = {
       statusPageLink: 'https://vw.acofork.com/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'pan_nas',
@@ -114,7 +114,7 @@ const workerConfig = {
       statusPageLink: 'https://pan.acofork.com/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'fnos_nas',
@@ -124,7 +124,7 @@ const workerConfig = {
       statusPageLink: 'https://nas.acofork.com/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'gh_proxy_eo',
@@ -134,7 +134,7 @@ const workerConfig = {
       statusPageLink: 'https://gh.072103.xyz/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'gh_proxy_cf',
@@ -144,7 +144,7 @@ const workerConfig = {
       statusPageLink: 'https://cf-gh.072103.xyz/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'eopfapi',
@@ -154,7 +154,7 @@ const workerConfig = {
       statusPageLink: 'https://eopfapi.acofork.com/pic/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'eo_umami',
@@ -164,7 +164,7 @@ const workerConfig = {
       statusPageLink: 'https://eo-umami.acofork.com/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'upload_to_s3',
@@ -174,7 +174,7 @@ const workerConfig = {
       statusPageLink: 'https://u.2x.nz/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'onedrive_index',
@@ -184,7 +184,7 @@ const workerConfig = {
       statusPageLink: 'https://e3.2x.nz/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'eo_http',
@@ -194,21 +194,21 @@ const workerConfig = {
       statusPageLink: 'https://http.acofork.com/',
       hideLatencyChart: false,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'yxvm_ssh',
       name: 'YxVM SSH',
       method: 'TCP_PING',
       target: '46.232.60.28:22',
-      timeout: 10000,
+      timeout: 25000,
     },
     {
       id: 'nas_ssh',
       name: 'NAS SSH',
       method: 'TCP_PING',
       target: 'nasv6.072103.xyz:22',
-      timeout: 10000,
+      timeout: 25000,
     }
   ],
   notification: {
