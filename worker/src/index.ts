@@ -159,19 +159,19 @@ export default {
                 currentTimeSecond,
                 'OK'
               )
-            } else {
-              console.log(`grace period (${workerConfig.notification?.gracePeriod}m) not met, skipping apprise UP notification for ${monitor.name}`)
-            }
 
-            console.log('Calling config onStatusChange callback...')
-            await workerConfig.callbacks.onStatusChange(
-              env,
-              monitor,
-              true,
-              lastIncident.start[0],
-              currentTimeSecond,
-              'OK'
-            )
+              console.log('Calling config onStatusChange callback...')
+              await workerConfig.callbacks.onStatusChange(
+                env,
+                monitor,
+                true,
+                lastIncident.start[0],
+                currentTimeSecond,
+                'OK'
+              )
+            } else {
+              console.log(`grace period (${workerConfig.notification?.gracePeriod}m) not met, skipping UP notification for ${monitor.name}`)
+            }
           } catch (e) {
             console.log('Error calling callback: ')
             console.log(e)
@@ -224,11 +224,7 @@ export default {
               currentTimeSecond,
               status.err
             )
-          } else {
-            console.log(`Grace period (${workerConfig.notification?.gracePeriod}m) not met (currently down for ${currentTimeSecond - currentIncident.start[0]}s, changed ${monitorStatusChanged}), skipping apprise DOWN notification for ${monitor.name}`)
-          }
 
-          if (monitorStatusChanged) {
             console.log('Calling config onStatusChange callback...')
             await workerConfig.callbacks.onStatusChange(
               env,
@@ -238,6 +234,8 @@ export default {
               currentTimeSecond,
               status.err
             )
+          } else {
+            console.log(`Grace period (${workerConfig.notification?.gracePeriod}m) not met (currently down for ${currentTimeSecond - currentIncident.start[0]}s, changed ${monitorStatusChanged}), skipping notification for ${monitor.name}`)
           }
         } catch (e) {
           console.log('Error calling callback: ')
