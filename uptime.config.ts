@@ -208,7 +208,7 @@ const workerConfig = {
       name: 'NAS SSH',
       method: 'TCP_PING',
       target: 'nasv6.072103.xyz:22',
-      timeout: 5000,
+      timeout: 20000,
     }
   ],
   notification: {
