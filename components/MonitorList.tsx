@@ -46,7 +46,7 @@ export default function MonitorList({ monitors, state }: { monitors: MonitorTarg
                   <div>{groupName}</div>
                   <Text fw={500} style={{ display: 'inline', paddingRight: '5px', color: getStatusTextColor(state, group[groupName])}}>
                     {group[groupName].length - countDownCount(state, group[groupName])}
-                    /{group[groupName].length} 运行正常
+                    /{group[groupName].length} 運行正常
                   </Text>
                 </div>
               </Accordion.Control>
