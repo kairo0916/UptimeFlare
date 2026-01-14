@@ -58,7 +58,7 @@ const workerConfig = {
     // },
     {
       id: 'blog',
-      name: '博客总入口（自动分流）',
+      name: '博客總入口',
       method: 'HEAD',
       target: 'https://kairo.qzz.io/',
       statusPageLink: 'https://kairo.qzz.io//',
@@ -68,9 +68,9 @@ const workerConfig = {
     },
     {
       id: 'blog_eo',
-      name: '博客（EdgeOne Pages国内节点）',
+      name: '博客（EdgeOne Pages中國節點）',
       method: 'HEAD',
-      target: 'https://edge.kairo.qzz.io/',
+      target: 'https://eo.kairo.qzz.io/',
       statusPageLink: 'https://edge.kairo.qzz.io/',
       hideLatencyChart: false,
       expectedCodes: [200],
@@ -78,7 +78,7 @@ const workerConfig = {
     },
     {
       id: 'blog_cf',
-      name: '博客（Cloudflare Pages海外节点）',
+      name: '博客（Cloudflare Pages海外節點）',
       method: 'HEAD',
       target: 'https://cf.kairo.qzz.io/',
       statusPageLink: 'https://cf.kairo.qzz.io/',
@@ -88,7 +88,7 @@ const workerConfig = {
     },
     {
       id: 'umami_web',
-      name: 'Umami',
+      name: 'Umami 分析',
       method: 'HEAD',
       target: 'https://umami.kairo.qzz.io/',
       statusPageLink: 'https://umami.kairo.qzz.io/',
