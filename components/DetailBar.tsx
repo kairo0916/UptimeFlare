@@ -72,12 +72,12 @@ export default function DetailBar({
         events={{ hover: true, focus: false, touch: true }}
         label={
           Number.isNaN(Number(dayPercent)) ? (
-            '无数据'
+            '無數據'
           ) : (
             <>
-              <div>{dayPercent + '% 于 ' + new Date(dayStart * 1000).toLocaleDateString()}</div>
+              <div>{dayPercent + '% 於 ' + new Date(dayStart * 1000).toLocaleDateString()}</div>
               {dayDownTime > 0 && (
-                <div>{`故障持续 ${moment.preciseDiff(moment(0), moment(dayDownTime * 1000))} (点击查看详情)`}</div>
+                <div>{`故障持續 ${moment.preciseDiff(moment(0), moment(dayDownTime * 1000))} (點擊查看詳情)`}</div>
               )}
             </>
           )
@@ -94,7 +94,7 @@ export default function DetailBar({
           }}
           onClick={() => {
             if (dayDownTime > 0) {
-              setModalTitle(`🚨 ${monitor.name} 故障事件于 ${new Date(dayStart * 1000).toLocaleDateString('zh-CN')}`)
+              setModalTitle(`🚨 ${monitor.name} 故障事件於 ${new Date(dayStart * 1000).toLocaleDateString('zh-TW')}`)
               setModelContent(
                 <>
                   {incidentReasons.map((reason, index) => (<div key={index}>{reason}</div>))}
