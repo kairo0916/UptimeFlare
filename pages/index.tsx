@@ -73,7 +73,7 @@ export default function Home({
         <Text size="xs" mt="xs" mb="xs" style={{
           textAlign: 'center'
         }}>
-          开源监控和状态页由{' '}
+          開源監控和狀態路由{' '}
           <a href="https://github.com/lyc8503/UptimeFlare" target="_blank">
             Uptimeflare
           </a>{' '}
@@ -85,7 +85,7 @@ export default function Home({
           <a href="https://github.com/lyc8503" target="_blank">
             lyc8503
           </a>
-          使用 ❤ 制作。
+          使用 ❤ 製作。
         </Text>
       </main>
     </>
