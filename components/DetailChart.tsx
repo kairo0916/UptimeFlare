@@ -76,7 +76,7 @@ export default function DetailChart({
       },
       title: {
         display: true,
-        text: '响应时间 (ms)',
+        text: '響應時間 (ms)',
         align: 'start' as const,
       },
     },
